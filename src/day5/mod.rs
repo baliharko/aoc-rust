@@ -3,37 +3,13 @@ const INPUT: &str = include_str!("../../inputs/day5/input.txt");
 pub fn part_1() -> String {
     let (stacks, instructions) = input_as_stacks_and_instructions();
     let moved_stacks = do_move_p1(&stacks, &instructions);
-
-    let answer: String = moved_stacks
-        .iter()
-        .fold(String::new(), |mut acc, it| -> String {
-            acc.push(it
-                     .last()
-                     .cloned()
-                     .unwrap());
-
-            return acc
-        });
-
-    return answer
+    return get_top_crates(&moved_stacks);
 }
 
 pub fn part_2() -> String {
     let (stacks, instructions) = input_as_stacks_and_instructions();
     let moved_stacks = do_move_p2(&stacks, &instructions);
-
-    let answer: String = moved_stacks
-        .iter()
-        .fold(String::new(), |mut acc, it| -> String {
-            acc.push(it
-                     .last()
-                     .cloned()
-                     .unwrap());
-
-            return acc
-        });
-
-    return answer
+    return get_top_crates(&moved_stacks);
 }
 
 fn do_move_p1(stacks: &Vec<Vec<char>>, instructions: &Vec<Vec<usize>>) -> Vec<Vec<char>> {
@@ -63,6 +39,15 @@ fn do_move_p2(stacks: &Vec<Vec<char>>, instructions: &Vec<Vec<usize>>) -> Vec<Ve
         acc[to].extend(temp.iter());
         return acc
     })
+}
+
+fn get_top_crates(stacks: &Vec<Vec<char>>) -> String {
+    stacks
+        .iter()
+        .fold(String::new(), |mut acc, it| -> String {
+            acc.push(it.last().cloned().unwrap());
+            return acc
+        })
 }
 
 fn input_as_stacks_and_instructions() -> (Vec<Vec<char>>, Vec<Vec<usize>>) {
