@@ -52,7 +52,7 @@ fn get_top_crates(stacks: &Vec<Vec<char>>) -> String {
 
 fn input_as_stacks_and_instructions() -> (Vec<Vec<char>>, Vec<Vec<usize>>) {
     let input: Vec<&str> = INPUT.split("\n\n").collect();
-    let stacks: Vec<Vec<char>> = input_to_stacks(input[0].clone());
+    let stacks: Vec<Vec<char>> = input_to_stacks(input[0]);
     let instructions: Vec<Vec<usize>> = input_to_instructions(input[1].clone());
 
     return (stacks, instructions);
